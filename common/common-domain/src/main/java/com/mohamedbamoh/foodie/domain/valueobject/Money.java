@@ -13,6 +13,8 @@ import java.math.RoundingMode;
 public class Money {
     private final BigDecimal amount;
 
+    public static Money ZERO = new Money(BigDecimal.ZERO);
+
     public boolean isGreaterThanZero() {
         return this.amount != null && this.amount.compareTo(BigDecimal.ZERO) > 0;
     }
