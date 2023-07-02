@@ -12,5 +12,11 @@
 
     <properties>
     </properties>
-    
+
+    <dependencies>
+        <dependency>
+            <groupId>com.mohamedbamoh.foodie</groupId>
+            <artifactId>common-domain</artifactId>
+        </dependency>
+    </dependencies>
 </project>
