@@ -2,7 +2,6 @@ package com.mohamedbamoh.foodie.order.core.domain;
 
 import com.mohamedbamoh.foodie.domain.exception.DomainException;
 import com.mohamedbamoh.foodie.order.core.domain.entity.Order;
-import com.mohamedbamoh.foodie.order.core.domain.entity.Product;
 import com.mohamedbamoh.foodie.order.core.domain.entity.Restaurant;
 import com.mohamedbamoh.foodie.order.core.domain.event.OrderCancalledEvent;
 import com.mohamedbamoh.foodie.order.core.domain.event.OrderCreatedEvent;
