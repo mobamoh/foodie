@@ -38,7 +38,7 @@ public class OrderCreateCommandHandler2 {
         var createdOrder = saveOrder(order);
         log.info("Order with id: {} created successfully!", createdOrder.getId());
         applicationDomainEventPublisher.publish(orderCreatedEvent);
-        return orderDataMapper.orderToCreateOrderResponse(createdOrder);
+        return orderDataMapper.orderToCreateOrderResponse(createdOrder, "");
     }
 
     private Restaurant checkRestaurant(CreateOrderCommand createOrderCommand) {

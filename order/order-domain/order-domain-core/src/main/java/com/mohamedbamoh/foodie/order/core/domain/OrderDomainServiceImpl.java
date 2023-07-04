@@ -6,6 +6,7 @@ import com.mohamedbamoh.foodie.order.core.domain.entity.Restaurant;
 import com.mohamedbamoh.foodie.order.core.domain.event.OrderCancalledEvent;
 import com.mohamedbamoh.foodie.order.core.domain.event.OrderCreatedEvent;
 import com.mohamedbamoh.foodie.order.core.domain.event.OrderPaidEvent;
+import com.mohamedbamoh.foodie.order.core.domain.exception.OrderDomainException;
 import lombok.extern.slf4j.Slf4j;
 
 import java.time.ZoneId;
@@ -39,9 +40,9 @@ public class OrderDomainServiceImpl implements OrderDomainService {
 
     private void validateRestaurant(Restaurant restaurant) {
         if (!restaurant.isActive()) {
-            throw new DomainException(
+            throw new OrderDomainException(
                     String.format("Restaurant with id %s is currently not active!",
-                            restaurant.getId()));
+                            restaurant.getRestaurantId().getValue()));
         }
     }
 

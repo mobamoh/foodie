@@ -45,6 +45,7 @@ public class OrderDataMapper {
             List<com.mohamedbamoh.foodie.order.service.domain.dto.create.OrderItem> items) {
         return items.stream().map(item -> OrderItem.builder()
                 .product(new Product(new ProductId(item.getProductId())))
+                .quantity(item.getQuantity())
                 .price(new Money(item.getPrice()))
                 .subTotal(new Money(item.getSubTotal()))
                 .build()).collect(Collectors.toList());
@@ -56,10 +57,11 @@ public class OrderDataMapper {
                 address.getPostalCode(), address.getCity());
     }
 
-    public CreateOrderResponse orderToCreateOrderResponse(Order order) {
+    public CreateOrderResponse orderToCreateOrderResponse(Order order, String message) {
         return CreateOrderResponse.builder()
                 .orderStatus(order.getOrderStatus())
                 .trackingId(order.getTrackingId().getValue())
+                .message(message)
                 .build();
     }
 
