@@ -16,6 +16,7 @@ import java.util.UUID;
 @Getter
 public class Order extends AggregateRoot<OrderId> {
 
+    private final OrderId orderId;
     private final CustomerId customerId;
     private final RestaurantId restaurantId;
     private final StreetAddress deliveryAddress;
@@ -95,6 +96,7 @@ public class Order extends AggregateRoot<OrderId> {
             throw new OrderDomainException("Order is not in correct state for cancel initialization!");
         }
         this.orderStatus = OrderStatus.CANCELLING;
+        updateFailureMessages(failureMessages);
     }
 
     public void cancel(List<String> failureMessages) {

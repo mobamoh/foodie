@@ -10,6 +10,7 @@ import lombok.Getter;
 @Builder
 @Getter
 public class OrderItem extends BaseEntity<OrderItemId> {
+    private OrderItemId orderItemId;
     private OrderId orderId;
     private final Product product;
     private final Integer quantity;
