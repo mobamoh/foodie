@@ -7,15 +7,25 @@ import com.mohamedbamoh.foodie.order.core.domain.valueobject.OrderItemId;
 import lombok.Builder;
 import lombok.Getter;
 
-@Builder
+
 @Getter
 public class OrderItem extends BaseEntity<OrderItemId> {
-    private OrderItemId orderItemId;
+
     private OrderId orderId;
     private final Product product;
     private final Integer quantity;
     private final Money price;
     private final Money subTotal;
+
+    @Builder
+    private OrderItem(OrderItemId orderItemId, OrderId orderId, Product product, Integer quantity, Money price, Money subTotal) {
+        super.setId(orderItemId);
+        this.orderId = orderId;
+        this.product = product;
+        this.quantity = quantity;
+        this.price = price;
+        this.subTotal = subTotal;
+    }
 
     void initializeOrderItem(OrderId orderId, OrderItemId orderItemId) {
         super.setId(orderItemId);

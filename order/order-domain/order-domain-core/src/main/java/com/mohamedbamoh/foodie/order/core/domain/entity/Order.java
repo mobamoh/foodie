@@ -12,16 +12,28 @@ import lombok.Getter;
 import java.util.List;
 import java.util.UUID;
 
-@Builder
+//@Builder
 @Getter
 public class Order extends AggregateRoot<OrderId> {
 
-    private final OrderId orderId;
     private final CustomerId customerId;
     private final RestaurantId restaurantId;
     private final StreetAddress deliveryAddress;
     private final Money price;
     private final List<OrderItem> items;
+
+    @Builder
+    private Order(OrderId orderId, CustomerId customerId, RestaurantId restaurantId, StreetAddress deliveryAddress, Money price, List<OrderItem> items, TrackingId trackingId, OrderStatus orderStatus, List<String> failureMessages) {
+        super.setId(orderId);
+        this.customerId = customerId;
+        this.restaurantId = restaurantId;
+        this.deliveryAddress = deliveryAddress;
+        this.price = price;
+        this.items = items;
+        this.trackingId = trackingId;
+        this.orderStatus = orderStatus;
+        this.failureMessages = failureMessages;
+    }
 
     private TrackingId trackingId;
     private OrderStatus orderStatus;

@@ -14,6 +14,7 @@ import java.util.List;
 @Getter
 public class PaymentResponse {
 
+    private String id;
     private String orderId;
     private String sagaId;
     private String paymentId;
