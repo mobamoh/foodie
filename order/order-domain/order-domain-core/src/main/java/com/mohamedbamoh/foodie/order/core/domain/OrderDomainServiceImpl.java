@@ -1,5 +1,6 @@
 package com.mohamedbamoh.foodie.order.core.domain;
 
+import com.mohamedbamoh.foodie.domain.event.publisher.DomainEventPublisher;
 import com.mohamedbamoh.foodie.order.core.domain.entity.Order;
 import com.mohamedbamoh.foodie.order.core.domain.entity.Restaurant;
 import com.mohamedbamoh.foodie.order.core.domain.event.OrderCancalledEvent;
@@ -18,13 +19,13 @@ import static com.mohamedbamoh.foodie.domain.DomainConstants.UTC;
 public class OrderDomainServiceImpl implements OrderDomainService {
 
     @Override
-    public OrderCreatedEvent validateAndInitiateOrder(Order order, Restaurant restaurant) {
+    public OrderCreatedEvent validateAndInitiateOrder(Order order, Restaurant restaurant, DomainEventPublisher<OrderCreatedEvent> orderCreatedEventDomainEventPublisher) {
         validateRestaurant(restaurant);
         setOrderProductInfo(order, restaurant);
         order.validateOrder();
         order.initializeOrder();
         log.info("Order with id: {} is initiated", order.getId().getValue());
-        return new OrderCreatedEvent(order, ZonedDateTime.now(ZoneId.of(UTC)));
+        return new OrderCreatedEvent(order, ZonedDateTime.now(ZoneId.of(UTC)), orderCreatedEventDomainEventPublisher);
     }
 
     private void setOrderProductInfo(Order order, Restaurant restaurant) {
@@ -46,10 +47,10 @@ public class OrderDomainServiceImpl implements OrderDomainService {
     }
 
     @Override
-    public OrderPaidEvent payOrder(Order order) {
+    public OrderPaidEvent payOrder(Order order, DomainEventPublisher<OrderPaidEvent> orderPaidEventDomainEventPublisher) {
         order.pay();
         log.info("Order with id: {} is paid", order.getId().getValue());
-        return new OrderPaidEvent(order, ZonedDateTime.now(ZoneId.of(UTC)));
+        return new OrderPaidEvent(order, ZonedDateTime.now(ZoneId.of(UTC)), orderPaidEventDomainEventPublisher);
     }
 
     @Override
@@ -59,10 +60,10 @@ public class OrderDomainServiceImpl implements OrderDomainService {
     }
 
     @Override
-    public OrderCancalledEvent cancelOrderPayment(Order order, List<String> failureMessages) {
+    public OrderCancalledEvent cancelOrderPayment(Order order, List<String> failureMessages, DomainEventPublisher<OrderCancalledEvent> orderCancalledEventDomainEventPublisher) {
         order.initCancel(failureMessages);
         log.info("Order payment is cancelling for order id: {}", order.getId().getValue());
-        return new OrderCancalledEvent(order, ZonedDateTime.now(ZoneId.of(UTC)));
+        return new OrderCancalledEvent(order, ZonedDateTime.now(ZoneId.of(UTC)), orderCancalledEventDomainEventPublisher);
     }
 
     @Override

@@ -8,6 +8,7 @@ import com.mohamedbamoh.foodie.order.core.domain.event.OrderCreatedEvent;
 import com.mohamedbamoh.foodie.order.core.domain.exception.OrderDomainException;
 import com.mohamedbamoh.foodie.order.service.domain.dto.create.CreateOrderCommand;
 import com.mohamedbamoh.foodie.order.service.domain.mapper.OrderDataMapper;
+import com.mohamedbamoh.foodie.order.service.domain.port.output.message.publisher.payment.OrderCreatedPaymentRequestMessagePublisher;
 import com.mohamedbamoh.foodie.order.service.domain.port.output.repository.CustomerRepository;
 import com.mohamedbamoh.foodie.order.service.domain.port.output.repository.OrderRepository;
 import com.mohamedbamoh.foodie.order.service.domain.port.output.repository.RestaurantRepository;
@@ -29,13 +30,14 @@ public class OrderCreateHelper {
     private final CustomerRepository customerRepository;
     private final RestaurantRepository restaurantRepository;
     private final OrderDataMapper orderDataMapper;
+    private final OrderCreatedPaymentRequestMessagePublisher orderCreatedEventDomainEventPublisher;
 
     @Transactional
     public OrderCreatedEvent persistOrder(CreateOrderCommand createOrderCommand) {
         checkCustomer(createOrderCommand.getCustomerId());
         var restaurant = checkRestaurant(createOrderCommand);
         var order = orderDataMapper.createOrderCommandToOrder(createOrderCommand);
-        var orderCreatedEvent = orderDomainService.validateAndInitiateOrder(order, restaurant);
+        var orderCreatedEvent = orderDomainService.validateAndInitiateOrder(order, restaurant, orderCreatedEventDomainEventPublisher);
         saveOrder(order);
         log.info("Order with id: {} created successfully!", orderCreatedEvent.getOrder().getId().getValue());
         return orderCreatedEvent;
