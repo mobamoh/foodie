@@ -1,6 +1,5 @@
 package com.mohamedbamoh.foodie.order.core.domain;
 
-import com.mohamedbamoh.foodie.domain.exception.DomainException;
 import com.mohamedbamoh.foodie.order.core.domain.entity.Order;
 import com.mohamedbamoh.foodie.order.core.domain.entity.Restaurant;
 import com.mohamedbamoh.foodie.order.core.domain.event.OrderCancalledEvent;
@@ -13,10 +12,10 @@ import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.List;
 
+import static com.mohamedbamoh.foodie.domain.DomainConstants.UTC;
+
 @Slf4j
 public class OrderDomainServiceImpl implements OrderDomainService {
-
-    public static final String UTC = "UTC";
 
     @Override
     public OrderCreatedEvent validateAndInitiateOrder(Order order, Restaurant restaurant) {
