@@ -1,6 +1,7 @@
 package com.mohamedbamoh.foodie.order.service.messaging.publisher.kafka;
 
 import com.mohamedbamoh.foodie.kafka.order.avro.model.PaymentRequestAvroModel;
+import com.mohamedbamoh.foodie.kafka.producer.KafkaMessageHelper;
 import com.mohamedbamoh.foodie.kafka.producer.service.KafkaProducer;
 import com.mohamedbamoh.foodie.order.core.domain.event.OrderCreatedEvent;
 import com.mohamedbamoh.foodie.order.service.domain.config.OrderServiceConfigData;
@@ -18,7 +19,7 @@ public class CreateOrderKafkaMessagePublisher implements OrderCreatedPaymentRequ
     private final OrderMessagingDataMapper orderMessagingDataMapper;
     private final OrderServiceConfigData orderServiceConfigData;
     private final KafkaProducer<String, PaymentRequestAvroModel> kafkaProducer;
-    private final OrderKafkaMessageHelper orderKafkaMessageHelper;
+    private final KafkaMessageHelper kafkaMessageHelper;
 
     @Override
     public void publish(OrderCreatedEvent domainEvent) {
@@ -29,7 +30,7 @@ public class CreateOrderKafkaMessagePublisher implements OrderCreatedPaymentRequ
             kafkaProducer.send(orderServiceConfigData.getPaymentRequestTopicName(),
                     orderId,
                     paymentRequestAvroModel,
-                    orderKafkaMessageHelper.getKafkaCallBack(orderServiceConfigData.getPaymentRequestTopicName(),
+                    kafkaMessageHelper.getKafkaCallBack(orderServiceConfigData.getPaymentRequestTopicName(),
                             paymentRequestAvroModel, orderId, "PaymentRequestAvroModel"));
             log.info("PaymentRequestAvroModel sent to kafka for order: {}", paymentRequestAvroModel.getOrderId());
         } catch (Exception e) {

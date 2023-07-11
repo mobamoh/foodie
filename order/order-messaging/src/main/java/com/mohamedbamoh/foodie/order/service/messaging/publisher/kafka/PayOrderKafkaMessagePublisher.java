@@ -1,6 +1,7 @@
 package com.mohamedbamoh.foodie.order.service.messaging.publisher.kafka;
 
 import com.mohamedbamoh.foodie.kafka.order.avro.model.RestaurantApprovalRequestAvroModel;
+import com.mohamedbamoh.foodie.kafka.producer.KafkaMessageHelper;
 import com.mohamedbamoh.foodie.kafka.producer.service.KafkaProducer;
 import com.mohamedbamoh.foodie.order.core.domain.event.OrderPaidEvent;
 import com.mohamedbamoh.foodie.order.service.domain.config.OrderServiceConfigData;
@@ -18,7 +19,7 @@ public class PayOrderKafkaMessagePublisher implements OrderPaidRestaurantRequest
     private final OrderMessagingDataMapper orderMessagingDataMapper;
     private final OrderServiceConfigData orderServiceConfigData;
     private final KafkaProducer<String, RestaurantApprovalRequestAvroModel> kafkaProducer;
-    private final OrderKafkaMessageHelper orderKafkaMessageHelper;
+    private final KafkaMessageHelper kafkaMessageHelper;
 
     @Override
     public void publish(OrderPaidEvent domainEvent) {
@@ -28,7 +29,7 @@ public class PayOrderKafkaMessagePublisher implements OrderPaidRestaurantRequest
             var restaurantApprovalRequestAvroModel = orderMessagingDataMapper.orderPaidToRestaurantApprovalRequestAvroModel(domainEvent);
             kafkaProducer.send(orderServiceConfigData.getRestaurantApprovalRequestTopicName(),
                     orderId, restaurantApprovalRequestAvroModel,
-                    orderKafkaMessageHelper.getKafkaCallBack(orderServiceConfigData.getRestaurantApprovalRequestTopicName(),
+                    kafkaMessageHelper.getKafkaCallBack(orderServiceConfigData.getRestaurantApprovalRequestTopicName(),
                             restaurantApprovalRequestAvroModel, orderId, "RestaurantApprovalRequestAvroModel"));
             log.info("RestaurantApprovalRequestAvroModel sent to kafka for order: {}", restaurantApprovalRequestAvroModel.getOrderId());
         } catch (Exception e) {
