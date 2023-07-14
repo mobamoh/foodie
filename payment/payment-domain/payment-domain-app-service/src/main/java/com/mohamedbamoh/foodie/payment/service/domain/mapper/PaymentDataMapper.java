@@ -4,7 +4,6 @@ import com.mohamedbamoh.foodie.domain.valueobject.CustomerId;
 import com.mohamedbamoh.foodie.domain.valueobject.Money;
 import com.mohamedbamoh.foodie.domain.valueobject.OrderId;
 import com.mohamedbamoh.foodie.payment.core.domain.entity.Payment;
-import com.mohamedbamoh.foodie.payment.core.domain.valueobject.PaymentId;
 import com.mohamedbamoh.foodie.payment.service.domain.dto.PaymentRequest;
 import org.springframework.stereotype.Component;
 

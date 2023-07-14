@@ -9,7 +9,6 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
-import java.util.UUID;
 
 @AllArgsConstructor
 @Component

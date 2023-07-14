@@ -3,8 +3,8 @@ package com.mohamedbamoh.foodie.payment.core.domain.entity;
 import com.mohamedbamoh.foodie.domain.entity.BaseEntity;
 import com.mohamedbamoh.foodie.domain.valueobject.CustomerId;
 import com.mohamedbamoh.foodie.domain.valueobject.Money;
-import com.mohamedbamoh.foodie.payment.core.domain.valueobject.CreditHistoryId;
 import com.mohamedbamoh.foodie.payment.core.domain.valueobject.TransactionType;
+import com.mohamedbamoh.foodie.payment.core.domain.valueobject.CreditHistoryId;
 import lombok.Builder;
 import lombok.Getter;
 

@@ -23,6 +23,7 @@
         <module>infrastructure</module>
         <module>customer</module>
         <module>payment</module>
+        <module>restaurant</module>
     </modules>
 
     <properties>
@@ -80,12 +81,37 @@
             </dependency>
             <dependency>
                 <groupId>com.mohamedbamoh.foodie</groupId>
+                <artifactId>restaurant-domain-core</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.mohamedbamoh.foodie</groupId>
+                <artifactId>restaurant-domain-app-service</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.mohamedbamoh.foodie</groupId>
+                <artifactId>restaurant-data-access</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.mohamedbamoh.foodie</groupId>
+                <artifactId>restaurant-messaging</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.mohamedbamoh.foodie</groupId>
                 <artifactId>common-domain</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.mohamedbamoh.foodie</groupId>
                 <artifactId>common-application</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.mohamedbamoh.foodie</groupId>
+                <artifactId>common-data-access</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>

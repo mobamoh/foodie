@@ -1,12 +1,12 @@
 package com.mohamedbamoh.foodie.order.service.data.access.restaurant.mapper;
 
+import com.mohamedbamoh.foodie.common.data.access.restaurant.entity.RestaurantEntity;
+import com.mohamedbamoh.foodie.common.data.access.restaurant.exception.RestaurantDataAccessException;
 import com.mohamedbamoh.foodie.domain.valueobject.Money;
 import com.mohamedbamoh.foodie.domain.valueobject.ProductId;
 import com.mohamedbamoh.foodie.domain.valueobject.RestaurantId;
 import com.mohamedbamoh.foodie.order.core.domain.entity.Product;
 import com.mohamedbamoh.foodie.order.core.domain.entity.Restaurant;
-import com.mohamedbamoh.foodie.order.service.data.access.restaurant.entity.RestaurantEntity;
-import com.mohamedbamoh.foodie.order.service.data.access.restaurant.exception.RestaurantDataAccessException;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
