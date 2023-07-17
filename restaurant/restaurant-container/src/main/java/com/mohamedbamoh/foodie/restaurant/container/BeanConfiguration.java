@@ -1,7 +1,7 @@
 package com.mohamedbamoh.foodie.restaurant.container;
 
-import com.mohamedbamoh.foodie.restaurant.core.domain.RestaurantDomainService;
-import com.mohamedbamoh.foodie.restaurant.core.domain.RestaurantDomainServiceImpl;
+import com.mohamedbamoh.foodie.restaurant.domain.core.RestaurantDomainService;
+import com.mohamedbamoh.foodie.restaurant.domain.core.RestaurantDomainServiceImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

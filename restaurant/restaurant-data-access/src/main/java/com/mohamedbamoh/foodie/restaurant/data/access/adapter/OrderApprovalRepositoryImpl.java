@@ -1,9 +1,9 @@
 package com.mohamedbamoh.foodie.restaurant.data.access.adapter;
 
-import com.mohamedbamoh.foodie.restaurant.core.domain.entity.OrderApproval;
+import com.mohamedbamoh.foodie.restaurant.domain.core.entity.OrderApproval;
 import com.mohamedbamoh.foodie.restaurant.data.access.mapper.RestaurantDataAccessMapper;
 import com.mohamedbamoh.foodie.restaurant.data.access.repository.OrderApprovalJpaRepository;
-import com.mohamedbamoh.foodie.restaurant.service.app.domain.port.output.repository.OrderApprovalRepository;
+import com.mohamedbamoh.foodie.restaurant.domain.app.service.port.output.repository.OrderApprovalRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 

@@ -2,15 +2,15 @@ package com.mohamedbamoh.foodie.restaurant.data.access.mapper;
 
 import com.mohamedbamoh.foodie.common.data.access.restaurant.entity.RestaurantEntity;
 import com.mohamedbamoh.foodie.common.data.access.restaurant.exception.RestaurantDataAccessException;
-import com.mohamedbamoh.foodie.domain.valueobject.Money;
-import com.mohamedbamoh.foodie.domain.valueobject.OrderId;
-import com.mohamedbamoh.foodie.domain.valueobject.ProductId;
-import com.mohamedbamoh.foodie.domain.valueobject.RestaurantId;
-import com.mohamedbamoh.foodie.restaurant.core.domain.entity.OrderApproval;
-import com.mohamedbamoh.foodie.restaurant.core.domain.entity.OrderDetail;
-import com.mohamedbamoh.foodie.restaurant.core.domain.entity.Product;
-import com.mohamedbamoh.foodie.restaurant.core.domain.entity.Restaurant;
-import com.mohamedbamoh.foodie.restaurant.core.domain.valueobject.OrderApprovalId;
+import com.mohamedbamoh.foodie.common.domain.valueobject.Money;
+import com.mohamedbamoh.foodie.common.domain.valueobject.OrderId;
+import com.mohamedbamoh.foodie.common.domain.valueobject.ProductId;
+import com.mohamedbamoh.foodie.common.domain.valueobject.RestaurantId;
+import com.mohamedbamoh.foodie.restaurant.domain.core.entity.OrderApproval;
+import com.mohamedbamoh.foodie.restaurant.domain.core.entity.OrderDetail;
+import com.mohamedbamoh.foodie.restaurant.domain.core.entity.Product;
+import com.mohamedbamoh.foodie.restaurant.domain.core.entity.Restaurant;
+import com.mohamedbamoh.foodie.restaurant.domain.core.valueobject.OrderApprovalId;
 import com.mohamedbamoh.foodie.restaurant.data.access.entity.OrderApprovalEntity;
 import org.springframework.stereotype.Component;
 

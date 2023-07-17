@@ -1,6 +1,6 @@
 package com.mohamedbamoh.foodie.payment.data.access.credithistory.entity;
 
-import com.mohamedbamoh.foodie.payment.core.domain.valueobject.TransactionType;
+import com.mohamedbamoh.foodie.payment.domain.core.valueobject.TransactionType;
 import jakarta.persistence.*;
 import lombok.*;
 

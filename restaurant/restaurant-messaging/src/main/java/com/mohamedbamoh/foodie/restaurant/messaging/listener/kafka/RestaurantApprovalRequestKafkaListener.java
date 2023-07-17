@@ -1,10 +1,9 @@
 package com.mohamedbamoh.foodie.restaurant.messaging.listener.kafka;
 
 import com.mohamedbamoh.foodie.kafka.consumer.KafkaConsumer;
-import com.mohamedbamoh.foodie.kafka.order.avro.model.PaymentOrderStatus;
 import com.mohamedbamoh.foodie.kafka.order.avro.model.RestaurantApprovalRequestAvroModel;
 import com.mohamedbamoh.foodie.restaurant.messaging.mapper.RestaurantMessagingDataMapper;
-import com.mohamedbamoh.foodie.restaurant.service.app.domain.port.input.message.listener.RestaurantApprovalRequestMessageListener;
+import com.mohamedbamoh.foodie.restaurant.domain.app.service.port.input.message.listener.RestaurantApprovalRequestMessageListener;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.annotation.KafkaListener;

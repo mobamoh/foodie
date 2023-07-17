@@ -1,6 +1,6 @@
 package com.mohamedbamoh.foodie.payment.data.access.payment.entity;
 
-import com.mohamedbamoh.foodie.domain.valueobject.PaymentStatus;
+import com.mohamedbamoh.foodie.common.domain.valueobject.PaymentStatus;
 import jakarta.persistence.*;
 import lombok.*;
 

@@ -1,7 +1,7 @@
 package com.mohamedbamoh.foodie.restaurant.data.access.entity;
 
 
-import com.mohamedbamoh.foodie.domain.valueobject.OrderApprovalStatus;
+import com.mohamedbamoh.foodie.common.domain.valueobject.OrderApprovalStatus;
 import jakarta.persistence.*;
 import lombok.*;
 

@@ -1,9 +1,9 @@
 package com.mohamedbamoh.foodie.payment.data.access.creditentry.mapper;
 
-import com.mohamedbamoh.foodie.domain.valueobject.CustomerId;
-import com.mohamedbamoh.foodie.domain.valueobject.Money;
-import com.mohamedbamoh.foodie.payment.core.domain.entity.CreditEntry;
-import com.mohamedbamoh.foodie.payment.core.domain.valueobject.CreditEntryId;
+import com.mohamedbamoh.foodie.common.domain.valueobject.CustomerId;
+import com.mohamedbamoh.foodie.common.domain.valueobject.Money;
+import com.mohamedbamoh.foodie.payment.domain.core.entity.CreditEntry;
+import com.mohamedbamoh.foodie.payment.domain.core.valueobject.CreditEntryId;
 import com.mohamedbamoh.foodie.payment.data.access.creditentry.entity.CreditEntryEntity;
 import org.springframework.stereotype.Component;
 

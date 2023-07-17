@@ -1,10 +1,10 @@
 package com.mohamedbamoh.foodie.payment.data.access.credithistory.adapter;
 
-import com.mohamedbamoh.foodie.domain.valueobject.CustomerId;
-import com.mohamedbamoh.foodie.payment.core.domain.entity.CreditHistory;
+import com.mohamedbamoh.foodie.common.domain.valueobject.CustomerId;
+import com.mohamedbamoh.foodie.payment.domain.core.entity.CreditHistory;
 import com.mohamedbamoh.foodie.payment.data.access.credithistory.mapper.CreditHistoryDataAccessMapper;
 import com.mohamedbamoh.foodie.payment.data.access.credithistory.repository.CreditHistoryJpaRepository;
-import com.mohamedbamoh.foodie.payment.service.domain.port.output.repository.CreditHistoryRepository;
+import com.mohamedbamoh.foodie.payment.domain.app.service.port.output.repository.CreditHistoryRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 

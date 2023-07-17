@@ -1,9 +1,9 @@
 package com.mohamedbamoh.foodie.payment.data.access.payment.adapter;
 
-import com.mohamedbamoh.foodie.payment.core.domain.entity.Payment;
+import com.mohamedbamoh.foodie.payment.domain.core.entity.Payment;
 import com.mohamedbamoh.foodie.payment.data.access.payment.mapper.PaymentDataAccessMapper;
 import com.mohamedbamoh.foodie.payment.data.access.payment.repository.PaymentJpaRepository;
-import com.mohamedbamoh.foodie.payment.service.domain.port.output.repository.PaymentRepository;
+import com.mohamedbamoh.foodie.payment.domain.app.service.port.output.repository.PaymentRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
