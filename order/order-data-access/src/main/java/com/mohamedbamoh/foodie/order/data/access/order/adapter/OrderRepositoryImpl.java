@@ -1,5 +1,6 @@
 package com.mohamedbamoh.foodie.order.data.access.order.adapter;
 
+import com.mohamedbamoh.foodie.common.domain.valueobject.OrderId;
 import com.mohamedbamoh.foodie.order.domain.core.entity.Order;
 import com.mohamedbamoh.foodie.order.domain.core.valueobject.TrackingId;
 import com.mohamedbamoh.foodie.order.data.access.order.repository.OrderJpaRepository;
@@ -21,6 +22,12 @@ public class OrderRepositoryImpl implements OrderRepository {
     public Order save(Order order) {
         var orderEntity = orderJpaRepository.save(orderDataAccessMapper.orderToOrderEntity(order));
         return orderDataAccessMapper.orderEntityToOrder(orderEntity);
+    }
+
+    @Override
+    public Optional<Order> findById(OrderId orderId) {
+        return orderJpaRepository.findById(orderId.getValue())
+                .map(orderDataAccessMapper::orderEntityToOrder);
     }
 
     @Override
