@@ -7,7 +7,7 @@ This project, named "Foodie", is a demonstration of various concepts in software
 Foodie is a system that aims to provide a platform for food lovers to explore, discover, and order food. It consists of multiple microservices, each responsible for a specific aspect of the overall system. The project follows the principles of Clean Architecture and Domain-Driven Design to ensure a modular, scalable, and maintainable codebase.
 
 ## High Level Architecture
-![HLA](architecture.png)
+![HLA](foodie-architecture.png)
 ## Concepts Used
 
 - Clean Architecture
