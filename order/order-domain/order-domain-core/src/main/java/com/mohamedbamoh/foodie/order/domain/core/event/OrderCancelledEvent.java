@@ -7,15 +7,16 @@ import java.time.ZonedDateTime;
 
 public class OrderCancelledEvent extends OrderEvent {
 
-    private final DomainEventPublisher<OrderCancelledEvent> orderCancalledEventDomainEventPublisher;
+//    private final DomainEventPublisher<OrderCancelledEvent> orderCancalledEventDomainEventPublisher;
 
-    public OrderCancelledEvent(Order order, ZonedDateTime createdAt, DomainEventPublisher<OrderCancelledEvent> orderCancalledEventDomainEventPublisher) {
+    public OrderCancelledEvent(Order order, ZonedDateTime createdAt) {
         super(order, createdAt);
-        this.orderCancalledEventDomainEventPublisher = orderCancalledEventDomainEventPublisher;
+//        this.orderCancalledEventDomainEventPublisher = orderCancalledEventDomainEventPublisher;
     }
 
-    @Override
-    public void fire() {
-        orderCancalledEventDomainEventPublisher.publish(this);
-    }
+//    @Override
+//    public void fire() {
+//        orderCancalledEventDomainEventPublisher.publish(this);
+//    }
+
 }

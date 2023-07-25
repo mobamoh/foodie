@@ -1,10 +1,15 @@
 package com.mohamedbamoh.foodie.saga;
 
-import com.mohamedbamoh.foodie.common.domain.event.DomainEvent;
+public interface SagaStep<T> {
 
-public interface SagaStep<T, S extends DomainEvent, U extends DomainEvent> {
+    void process(T data);
 
-    S process(T data);
-
-    U rollback(T data);
+    void rollback(T data);
 }
+
+//public interface SagaStep<T, S extends DomainEvent, U extends DomainEvent> {
+//
+//    S process(T data);
+//
+//    U rollback(T data);
+//}
