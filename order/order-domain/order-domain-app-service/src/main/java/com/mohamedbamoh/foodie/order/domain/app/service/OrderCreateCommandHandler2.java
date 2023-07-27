@@ -1,17 +1,16 @@
 package com.mohamedbamoh.foodie.order.domain.app.service;
 
+import com.mohamedbamoh.foodie.order.domain.app.service.dto.create.CreateOrderCommand;
+import com.mohamedbamoh.foodie.order.domain.app.service.dto.create.CreateOrderResponse;
+import com.mohamedbamoh.foodie.order.domain.app.service.mapper.OrderDataMapper;
+import com.mohamedbamoh.foodie.order.domain.app.service.port.output.repository.CustomerRepository;
+import com.mohamedbamoh.foodie.order.domain.app.service.port.output.repository.OrderRepository;
+import com.mohamedbamoh.foodie.order.domain.app.service.port.output.repository.RestaurantRepository;
 import com.mohamedbamoh.foodie.order.domain.core.OrderDomainService;
 import com.mohamedbamoh.foodie.order.domain.core.entity.Customer;
 import com.mohamedbamoh.foodie.order.domain.core.entity.Order;
 import com.mohamedbamoh.foodie.order.domain.core.entity.Restaurant;
 import com.mohamedbamoh.foodie.order.domain.core.exception.OrderDomainException;
-import com.mohamedbamoh.foodie.order.domain.app.service.mapper.OrderDataMapper;
-import com.mohamedbamoh.foodie.order.domain.app.service.port.output.message.publisher.payment.OrderCreatedPaymentRequestMessagePublisher;
-import com.mohamedbamoh.foodie.order.domain.app.service.port.output.repository.CustomerRepository;
-import com.mohamedbamoh.foodie.order.domain.app.service.port.output.repository.OrderRepository;
-import com.mohamedbamoh.foodie.order.domain.app.service.port.output.repository.RestaurantRepository;
-import com.mohamedbamoh.foodie.order.domain.app.service.dto.create.CreateOrderCommand;
-import com.mohamedbamoh.foodie.order.domain.app.service.dto.create.CreateOrderResponse;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -29,14 +28,14 @@ public class OrderCreateCommandHandler2 {
     private final RestaurantRepository restaurantRepository;
     private final OrderDataMapper orderDataMapper;
     private final ApplicationDomainEventPublisher2 applicationDomainEventPublisher;
-    private final OrderCreatedPaymentRequestMessagePublisher orderCreatedEventDomainEventPublisher;
+//    private final OrderCreatedPaymentRequestMessagePublisher orderCreatedEventDomainEventPublisher;
 
     //    @Transactional
     public CreateOrderResponse createOrder(CreateOrderCommand createOrderCommand) {
         checkCustomer(createOrderCommand.getCustomerId());
         var restaurant = checkRestaurant(createOrderCommand);
         var order = orderDataMapper.createOrderCommandToOrder(createOrderCommand);
-        var orderCreatedEvent = orderDomainService.validateAndInitiateOrder(order, restaurant, orderCreatedEventDomainEventPublisher);
+        var orderCreatedEvent = orderDomainService.validateAndInitiateOrder(order, restaurant);
         var createdOrder = saveOrder(order);
         log.info("Order with id: {} created successfully!", createdOrder.getId());
         applicationDomainEventPublisher.publish(orderCreatedEvent);

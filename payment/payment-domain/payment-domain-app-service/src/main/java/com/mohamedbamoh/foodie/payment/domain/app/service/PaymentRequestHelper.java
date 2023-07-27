@@ -1,20 +1,17 @@
 package com.mohamedbamoh.foodie.payment.domain.app.service;
 
 import com.mohamedbamoh.foodie.common.domain.valueobject.CustomerId;
+import com.mohamedbamoh.foodie.payment.domain.app.service.dto.PaymentRequest;
+import com.mohamedbamoh.foodie.payment.domain.app.service.exception.PaymentApplicationServiceException;
+import com.mohamedbamoh.foodie.payment.domain.app.service.mapper.PaymentDataMapper;
+import com.mohamedbamoh.foodie.payment.domain.app.service.port.output.repository.CreditEntryRepository;
+import com.mohamedbamoh.foodie.payment.domain.app.service.port.output.repository.CreditHistoryRepository;
+import com.mohamedbamoh.foodie.payment.domain.app.service.port.output.repository.PaymentRepository;
 import com.mohamedbamoh.foodie.payment.domain.core.PaymentDomainService;
 import com.mohamedbamoh.foodie.payment.domain.core.entity.CreditEntry;
 import com.mohamedbamoh.foodie.payment.domain.core.entity.CreditHistory;
 import com.mohamedbamoh.foodie.payment.domain.core.entity.Payment;
 import com.mohamedbamoh.foodie.payment.domain.core.event.PaymentEvent;
-import com.mohamedbamoh.foodie.payment.domain.app.service.exception.PaymentApplicationServiceException;
-import com.mohamedbamoh.foodie.payment.domain.app.service.mapper.PaymentDataMapper;
-import com.mohamedbamoh.foodie.payment.domain.app.service.dto.PaymentRequest;
-import com.mohamedbamoh.foodie.payment.domain.app.service.port.output.message.publisher.PaymentCancelledMessagePublisher;
-import com.mohamedbamoh.foodie.payment.domain.app.service.port.output.message.publisher.PaymentCompletedMessagePublisher;
-import com.mohamedbamoh.foodie.payment.domain.app.service.port.output.message.publisher.PaymentFailedMessagePublisher;
-import com.mohamedbamoh.foodie.payment.domain.app.service.port.output.repository.CreditEntryRepository;
-import com.mohamedbamoh.foodie.payment.domain.app.service.port.output.repository.CreditHistoryRepository;
-import com.mohamedbamoh.foodie.payment.domain.app.service.port.output.repository.PaymentRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -35,9 +32,9 @@ public class PaymentRequestHelper {
     private final PaymentRepository paymentRepository;
     private final CreditEntryRepository creditEntryRepository;
     private final CreditHistoryRepository creditHistoryRepository;
-    private final PaymentCompletedMessagePublisher paymentCompletedEventDomainEventPublisher;
-    private final PaymentCancelledMessagePublisher paymentCancelledEventDomainEventPublisher;
-    private final PaymentFailedMessagePublisher paymentFailedEventDomainEventPublisher;
+//    private final PaymentCompletedMessagePublisher paymentCompletedEventDomainEventPublisher;
+//    private final PaymentCancelledMessagePublisher paymentCancelledEventDomainEventPublisher;
+//    private final PaymentFailedMessagePublisher paymentFailedEventDomainEventPublisher;
 
     @Transactional
     public PaymentEvent persistPayment(PaymentRequest paymentRequest) {
@@ -47,8 +44,8 @@ public class PaymentRequestHelper {
         var creditEntry = getCreditEntry(payment.getCustomerId());
         var creditHistories = getCreditHistory(payment.getCustomerId());
         var failureMessages = new ArrayList<String>();
-        var paymentEvent = paymentDomainService.validateAndInitiatePayment(payment, creditEntry, creditHistories, failureMessages,
-                paymentCompletedEventDomainEventPublisher, paymentFailedEventDomainEventPublisher);
+        var paymentEvent = paymentDomainService.validateAndInitiatePayment(payment, creditEntry, creditHistories, failureMessages);
+//                paymentCompletedEventDomainEventPublisher, paymentFailedEventDomainEventPublisher);
         persistDbObjects(payment, creditEntry, creditHistories, failureMessages);
         return paymentEvent;
     }
@@ -68,8 +65,8 @@ public class PaymentRequestHelper {
         var creditEntry = getCreditEntry(payment.getCustomerId());
         var creditHistories = getCreditHistory(payment.getCustomerId());
         var failureMessages = new ArrayList<String>();
-        var paymentEvent = paymentDomainService.validateAndCancelPayment(payment, creditEntry, creditHistories, failureMessages,
-                paymentCancelledEventDomainEventPublisher, paymentFailedEventDomainEventPublisher);
+        var paymentEvent = paymentDomainService.validateAndCancelPayment(payment, creditEntry, creditHistories, failureMessages);
+//                paymentCancelledEventDomainEventPublisher, paymentFailedEventDomainEventPublisher);
         persistDbObjects(payment, creditEntry, creditHistories, failureMessages);
         return paymentEvent;
     }

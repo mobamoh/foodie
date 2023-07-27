@@ -12,6 +12,7 @@ import com.mohamedbamoh.foodie.order.domain.core.entity.Order;
 import com.mohamedbamoh.foodie.order.domain.core.entity.OrderItem;
 import com.mohamedbamoh.foodie.order.domain.core.entity.Product;
 import com.mohamedbamoh.foodie.order.domain.core.entity.Restaurant;
+import com.mohamedbamoh.foodie.order.domain.core.event.OrderCancelledEvent;
 import com.mohamedbamoh.foodie.order.domain.core.event.OrderCreatedEvent;
 import com.mohamedbamoh.foodie.order.domain.core.event.OrderPaidEvent;
 import com.mohamedbamoh.foodie.order.domain.core.valueobject.StreetAddress;
@@ -82,6 +83,16 @@ public class OrderDataMapper {
                 .price(orderCreatedEvent.getOrder().getPrice().getAmount())
                 .createdAt(orderCreatedEvent.getCreatedAt())
                 .paymentOrderStatus(PaymentOrderStatus.PENDING.name())
+                .build();
+    }
+
+    public OrderPaymentEventPayload orderCancelledEventToOrderPaymentEventPayload(OrderCancelledEvent orderCancelledEvent){
+        return OrderPaymentEventPayload.builder()
+                .customerId(orderCancelledEvent.getOrder().getCustomerId().getValue().toString())
+                .orderId(orderCancelledEvent.getOrder().getId().getValue().toString())
+                .price(orderCancelledEvent.getOrder().getPrice().getAmount())
+                .createdAt(orderCancelledEvent.getCreatedAt())
+                .paymentOrderStatus(PaymentOrderStatus.CANCELLED.name())
                 .build();
     }
 

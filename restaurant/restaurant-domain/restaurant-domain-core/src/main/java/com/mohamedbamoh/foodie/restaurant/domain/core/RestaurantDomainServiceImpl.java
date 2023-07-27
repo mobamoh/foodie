@@ -1,6 +1,5 @@
 package com.mohamedbamoh.foodie.restaurant.domain.core;
 
-import com.mohamedbamoh.foodie.common.domain.event.publisher.DomainEventPublisher;
 import com.mohamedbamoh.foodie.common.domain.valueobject.OrderApprovalStatus;
 import com.mohamedbamoh.foodie.restaurant.domain.core.entity.Restaurant;
 import com.mohamedbamoh.foodie.restaurant.domain.core.event.OrderApprovalEvent;
@@ -17,20 +16,20 @@ import static com.mohamedbamoh.foodie.common.domain.DomainConstants.UTC;
 @Slf4j
 public class RestaurantDomainServiceImpl implements RestaurantDomainService {
     @Override
-    public OrderApprovalEvent validateOrder(Restaurant restaurant, List<String> failureMessages, DomainEventPublisher<OrderApprovedEvent> orderApprovedEventDomainEventPublisher, DomainEventPublisher<OrderRejectedEvent> orderRejectedEventDomainEventPublisher) {
+    public OrderApprovalEvent validateOrder(Restaurant restaurant, List<String> failureMessages) {
         restaurant.validateOrder(failureMessages);
         log.info("Validating order: {}", restaurant.getOrderDetail().getId().getValue());
         if (failureMessages.isEmpty()) {
             log.info("Order: {} approved", restaurant.getOrderDetail().getId().getValue());
             restaurant.constructOrderApproval(OrderApprovalStatus.APPROVED);
             return new OrderApprovedEvent(restaurant.getOrderApproval(), restaurant.getId(),
-                    failureMessages, ZonedDateTime.now(ZoneId.of(UTC)), orderApprovedEventDomainEventPublisher);
+                    failureMessages, ZonedDateTime.now(ZoneId.of(UTC)));
         }
 
         log.info("Order: {} rejected", restaurant.getOrderDetail().getId().getValue());
         restaurant.constructOrderApproval(OrderApprovalStatus.REJECTED);
         return new OrderRejectedEvent(restaurant.getOrderApproval(), restaurant.getId(),
-                failureMessages, ZonedDateTime.now(ZoneId.of(UTC)), orderRejectedEventDomainEventPublisher);
+                failureMessages, ZonedDateTime.now(ZoneId.of(UTC)));
 
     }
 }
