@@ -12,6 +12,10 @@
     <dependencies>
         <dependency>
             <groupId>com.mohamedbamoh.foodie</groupId>
+            <artifactId>outbox</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.mohamedbamoh.foodie</groupId>
             <artifactId>kafka-model</artifactId>
         </dependency>
         <dependency>
