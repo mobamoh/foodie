@@ -17,5 +17,10 @@ Foodie is a system that aims to provide a platform for food lovers to explore, d
 - Kafka
 - Maven Multi-Module
 
+## Docker
+
+```sh
+docker run --name postgres -p 5432:5432 -e POSTGRES_USER=admin -e POSTGRES_PASSWORD=nimda -d postgres:15-alpine
+```
 
 
