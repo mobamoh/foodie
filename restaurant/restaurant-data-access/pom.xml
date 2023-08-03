@@ -17,6 +17,10 @@
     <dependencies>
         <dependency>
             <groupId>com.mohamedbamoh.foodie</groupId>
+            <artifactId>outbox</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.mohamedbamoh.foodie</groupId>
             <artifactId>restaurant-domain-app-service</artifactId>
         </dependency>
         <dependency>

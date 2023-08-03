@@ -67,8 +67,8 @@ CREATE TABLE "payment".order_outbox
 
 CREATE INDEX "payment_order_outbox_saga_status"
     ON "payment".order_outbox
-    (type, payment_status);
+        (type, payment_status);
 
 CREATE UNIQUE INDEX "payment_order_outbox_saga_id_payment_status_outbox_status"
     ON "payment".order_outbox
-    (type, saga_id, payment_status, outbox_status);
+        (type, saga_id, payment_status, outbox_status);

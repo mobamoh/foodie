@@ -22,9 +22,6 @@ public class OrderCreateCommandHandler {
     private final PaymentOutboxHelper paymentOutboxHelper;
     private final OrderSagaHelper orderSagaHelper;
 
-    //Scheduler will fire the event
-    //private final OrderCreatedPaymentRequestMessagePublisher orderCreatedPaymentRequestMessagePublisher;
-
     @Transactional
     public CreateOrderResponse createOrder(CreateOrderCommand createOrderCommand) {
         var orderCreatedEvent = orderCreateHelper.persistOrder(createOrderCommand);

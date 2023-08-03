@@ -6,10 +6,3 @@ public interface SagaStep<T> {
 
     void rollback(T data);
 }
-
-//public interface SagaStep<T, S extends DomainEvent, U extends DomainEvent> {
-//
-//    S process(T data);
-//
-//    U rollback(T data);
-//}

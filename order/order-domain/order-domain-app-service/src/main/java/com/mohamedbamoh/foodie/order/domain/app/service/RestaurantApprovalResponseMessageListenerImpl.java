@@ -27,10 +27,5 @@ public class RestaurantApprovalResponseMessageListenerImpl implements Restaurant
         log.info("Order approval saga rollback operation for order: {} with failure messages: {}",
                 restaurantApprovalResponse.getOrderId(),
                 String.join(",", restaurantApprovalResponse.getFailureMessages()));
-
-//        log.info("Publishing OrderCancelledEvent for order: {} with failure messages: {}",
-//                restaurantApprovalResponse.getOrderId(),
-//                String.join(",", restaurantApprovalResponse.getFailureMessages()));
-//        orderCancelledEvent.fire();
     }
 }

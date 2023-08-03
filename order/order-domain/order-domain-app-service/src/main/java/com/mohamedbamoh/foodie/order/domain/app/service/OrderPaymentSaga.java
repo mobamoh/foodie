@@ -29,7 +29,6 @@ import static com.mohamedbamoh.foodie.common.domain.DomainConstants.UTC;
 @Slf4j
 @Component
 @AllArgsConstructor
-//public class OrderPaymentSaga implements SagaStep<PaymentResponse, OrderPaidEvent, EmptyEvent> {
 public class OrderPaymentSaga implements SagaStep<PaymentResponse> {
 
     private final OrderDomainService orderDomainService;
@@ -37,8 +36,6 @@ public class OrderPaymentSaga implements SagaStep<PaymentResponse> {
     private final PaymentOutboxHelper paymentOutboxHelper;
     private final ApprovalOutboxHelper approvalOutboxHelper;
     private final OrderDataMapper orderDataMapper;
-
-//    private final OrderPaidRestaurantRequestMessagePublisher orderPaidRestaurantRequestMessagePublisher;
 
     @Override
     @Transactional
@@ -67,7 +64,6 @@ public class OrderPaymentSaga implements SagaStep<PaymentResponse> {
                 sagaStatus, OutboxStatus.STARTED, UUID.fromString(paymentResponse.getSagaId()));
 
         log.info("Order: {} is paid", orderPaidEvent.getOrder().getId().getValue());
-//        return orderPaidEvent;
     }
 
     @Override
@@ -97,7 +93,6 @@ public class OrderPaymentSaga implements SagaStep<PaymentResponse> {
         }
 
         log.info("Order: {} is cancelled", order.getId().getValue());
-//        return EmptyEvent.INSTANCE;
     }
 
     private OrderApprovalOutboxMessage getUpdatedApprovalOutboxMessage(String sagaId, OrderStatus orderStatus, SagaStatus sagaStatus) {
@@ -141,7 +136,6 @@ public class OrderPaymentSaga implements SagaStep<PaymentResponse> {
     private OrderPaidEvent completePaymentForOrder(PaymentResponse paymentResponse) {
         log.info("Completing payment for order: {}", paymentResponse.getOrderId());
         var order = orderSagaHelper.findOrder(paymentResponse.getOrderId());
-//        var orderPaidEvent = orderDomainService.payOrder(order, orderPaidRestaurantRequestMessagePublisher);
         var orderPaidEvent = orderDomainService.payOrder(order);
         orderSagaHelper.saveOrder(order);
         return orderPaidEvent;

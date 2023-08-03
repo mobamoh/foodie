@@ -23,7 +23,7 @@ public class Product extends BaseEntity<ProductId> {
         this.available = available;
     }
 
-    public void UpdateWithConfirmedNamePriceAndAvailability(String name, Money price, Boolean available) {
+    public void updateWithConfirmedNamePriceAndAvailability(String name, Money price, Boolean available) {
         this.name = name;
         this.price = price;
         this.available = available;

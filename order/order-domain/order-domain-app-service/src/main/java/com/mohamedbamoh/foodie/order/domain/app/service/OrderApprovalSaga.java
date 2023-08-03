@@ -28,7 +28,6 @@ import static com.mohamedbamoh.foodie.common.domain.DomainConstants.UTC;
 @Slf4j
 @Component
 @AllArgsConstructor
-//public class OrderApprovalSaga implements SagaStep<RestaurantApprovalResponse, EmptyEvent, OrderCancelledEvent> {
 public class OrderApprovalSaga implements SagaStep<RestaurantApprovalResponse> {
 
     private final OrderDomainService orderDomainService;
@@ -36,7 +35,6 @@ public class OrderApprovalSaga implements SagaStep<RestaurantApprovalResponse> {
     private final PaymentOutboxHelper paymentOutboxHelper;
     private final ApprovalOutboxHelper approvalOutboxHelper;
     private final OrderDataMapper orderDataMapper;
-//    private final OrderCancelledPaymentRequestMessagePublisher orderCancelledPaymentRequestMessagePublisher;
 
     @Override
     @Transactional
@@ -58,7 +56,6 @@ public class OrderApprovalSaga implements SagaStep<RestaurantApprovalResponse> {
         paymentOutboxHelper.save(getUpdatedPaymentOutboxMessage(restaurantApprovalResponse.getSagaId(), order.getOrderStatus(), sagaStatus));
 
         log.info("Order: {} has been approved", order.getId().getValue());
-//        return EmptyEvent.INSTANCE;
     }
 
     @Override
@@ -84,7 +81,6 @@ public class OrderApprovalSaga implements SagaStep<RestaurantApprovalResponse> {
                 UUID.fromString(restaurantApprovalResponse.getSagaId()));
 
         log.info("Order: {} has been cancelled", orderCancelledEvent.getOrder().getId().getValue());
-//        return orderCancelledEvent;
     }
 
     private Order approveOrder(RestaurantApprovalResponse restaurantApprovalResponse) {

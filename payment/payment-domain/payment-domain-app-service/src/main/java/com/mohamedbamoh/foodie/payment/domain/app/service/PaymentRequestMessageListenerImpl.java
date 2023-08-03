@@ -1,6 +1,5 @@
 package com.mohamedbamoh.foodie.payment.domain.app.service;
 
-import com.mohamedbamoh.foodie.payment.domain.core.event.PaymentEvent;
 import com.mohamedbamoh.foodie.payment.domain.app.service.dto.PaymentRequest;
 import com.mohamedbamoh.foodie.payment.domain.app.service.port.input.message.listener.PaymentRequestMessageListener;
 import lombok.AllArgsConstructor;
@@ -16,21 +15,12 @@ public class PaymentRequestMessageListenerImpl implements PaymentRequestMessageL
 
     @Override
     public void completePayment(PaymentRequest paymentRequest) {
-        var paymentEvent = paymentRequestHelper.persistPayment(paymentRequest);
-        fireEvent(paymentEvent);
+        paymentRequestHelper.persistPayment(paymentRequest);
     }
 
     @Override
     public void cancelPayment(PaymentRequest paymentRequest) {
-        var paymentEvent = paymentRequestHelper.persistCancelPayment(paymentRequest);
-        fireEvent(paymentEvent);
+        paymentRequestHelper.persistCancelPayment(paymentRequest);
 
-    }
-
-    private void fireEvent(PaymentEvent paymentEvent) {
-        log.info("Publishing event for payment {} and order {}",
-                paymentEvent.getPayment().getId().getValue(),
-                paymentEvent.getPayment().getOrderId().getValue());
-//        paymentEvent.fire();
     }
 }
