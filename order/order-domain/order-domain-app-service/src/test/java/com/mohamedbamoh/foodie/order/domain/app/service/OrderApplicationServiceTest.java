@@ -139,8 +139,8 @@ public class OrderApplicationServiceTest {
                                 .build()
                 )).build();
 
-        var customer = new Customer();
-        customer.setId(new CustomerId(CUSTOMER_ID));
+        var customer = new Customer(new CustomerId(CUSTOMER_ID));
+
         var restaurant = Restaurant.builder()
                 .restaurantId(new RestaurantId(createOrderCommand.getRestaurantId()))
                 .products(List.of(

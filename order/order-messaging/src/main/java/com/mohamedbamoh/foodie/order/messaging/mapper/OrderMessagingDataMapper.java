@@ -3,6 +3,7 @@ package com.mohamedbamoh.foodie.order.messaging.mapper;
 import com.mohamedbamoh.foodie.common.domain.valueobject.OrderApprovalStatus;
 import com.mohamedbamoh.foodie.common.domain.valueobject.PaymentStatus;
 import com.mohamedbamoh.foodie.kafka.order.avro.model.*;
+import com.mohamedbamoh.foodie.order.domain.app.service.dto.message.CustomerModel;
 import com.mohamedbamoh.foodie.order.domain.app.service.dto.message.PaymentResponse;
 import com.mohamedbamoh.foodie.order.domain.app.service.dto.message.RestaurantApprovalResponse;
 import com.mohamedbamoh.foodie.order.domain.app.service.outbox.model.approval.OrderApprovalEventPayload;
@@ -71,6 +72,15 @@ public class OrderMessagingDataMapper {
                                 .build()).collect(Collectors.toList()))
                 .setPrice(orderApprovalEventPayload.getPrice())
                 .setCreatedAt(orderApprovalEventPayload.getCreatedAt().toInstant())
+                .build();
+    }
+
+    public CustomerModel customerAvroModeltoCustomerModel(CustomerAvroModel customerAvroModel) {
+        return CustomerModel.builder()
+                .id(customerAvroModel.getId())
+                .username(customerAvroModel.getUsername())
+                .firstName(customerAvroModel.getFirstName())
+                .lastName(customerAvroModel.getLastName())
                 .build();
     }
 }

@@ -4,14 +4,12 @@ import com.mohamedbamoh.foodie.common.domain.valueobject.*;
 import com.mohamedbamoh.foodie.order.domain.app.service.dto.create.CreateOrderCommand;
 import com.mohamedbamoh.foodie.order.domain.app.service.dto.create.CreateOrderResponse;
 import com.mohamedbamoh.foodie.order.domain.app.service.dto.create.OrderAddress;
+import com.mohamedbamoh.foodie.order.domain.app.service.dto.message.CustomerModel;
 import com.mohamedbamoh.foodie.order.domain.app.service.dto.track.TrackOrderResponse;
 import com.mohamedbamoh.foodie.order.domain.app.service.outbox.model.approval.OrderApprovalEventPayload;
 import com.mohamedbamoh.foodie.order.domain.app.service.outbox.model.approval.OrderApprovalEventProduct;
 import com.mohamedbamoh.foodie.order.domain.app.service.outbox.model.payment.OrderPaymentEventPayload;
-import com.mohamedbamoh.foodie.order.domain.core.entity.Order;
-import com.mohamedbamoh.foodie.order.domain.core.entity.OrderItem;
-import com.mohamedbamoh.foodie.order.domain.core.entity.Product;
-import com.mohamedbamoh.foodie.order.domain.core.entity.Restaurant;
+import com.mohamedbamoh.foodie.order.domain.core.entity.*;
 import com.mohamedbamoh.foodie.order.domain.core.event.OrderCancelledEvent;
 import com.mohamedbamoh.foodie.order.domain.core.event.OrderCreatedEvent;
 import com.mohamedbamoh.foodie.order.domain.core.event.OrderPaidEvent;
@@ -109,5 +107,12 @@ public class OrderDataMapper {
                 .price(orderPaidEvent.getOrder().getPrice().getAmount())
                 .createdAt(orderPaidEvent.getCreatedAt())
                 .build();
+    }
+
+    public Customer customerModelToCustomer(CustomerModel customerModel) {
+        return new Customer(new CustomerId(UUID.fromString(customerModel.getId())),
+                customerModel.getUsername(),
+                customerModel.getFirstName(),
+                customerModel.getLastName());
     }
 }
