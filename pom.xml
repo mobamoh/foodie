@@ -14,7 +14,7 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>foodie</name>
-    <url>http://www.mohamedbamoh.com</url>
+    <url>https://www.mohamedbamoh.com</url>
 
     <modules>
         <module>order</module>
@@ -28,7 +28,10 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven-compiler-plugin.version>3.11.0</maven-compiler-plugin.version>
-        <mockito-core.version>4.5.1</mockito-core.version>
+        <mockito-core.version>5.2.0</mockito-core.version>
+        <spring-kafka.version>3.0.5</spring-kafka.version>
+        <avro.version>1.11.1</avro.version>
+        <kafka-avro-serializer.version>7.3.3</kafka-avro-serializer.version>
     </properties>
 
     <dependencyManagement>
